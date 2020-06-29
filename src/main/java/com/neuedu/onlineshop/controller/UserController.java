@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private UserService userService;
-    
     @RequestMapping(value="/login",method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpServletRequest request){//请求中传递json格式的对象，转为java中的对象
     	HttpSession session = request.getSession();
