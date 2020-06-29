@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neuedu.onlineshop.mapper.OrderMapper" >
+  <resultMap id="OrderResultMap" type="Order" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="DECIMAL" />
+    <result column="paytype" property="paytype" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="shipname" property="shipname" jdbcType="VARCHAR" />
+    <result column="shipcode" property="shipcode" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="closetime" property="closetime" jdbcType="TIMESTAMP" />
+    <result column="addressId" property="addressid" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Order_Column_List" >
+    orderid, userid, total, paytype, status, shipname, shipcode, createtime, closetime, 
+    addressId, orderNo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="OrderResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Order_Column_List" />
+    from order
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="Order" >
+    insert into order (orderid, userid, total, 
+      paytype, status, shipname, 
+      shipcode, createtime, closetime, 
+      addressId, orderNo)
+    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{total,jdbcType=DECIMAL}, 
+      #{paytype,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{shipname,jdbcType=VARCHAR}, 
+      #{shipcode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{closetime,jdbcType=TIMESTAMP}, 
+      #{addressid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="paytype != null" >
+        paytype,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="shipname != null" >
+        shipname,
+      </if>
+      <if test="shipcode != null" >
+        shipcode,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="closetime != null" >
+        closetime,
+      </if>
+      <if test="addressid != null" >
+        addressId,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shipname != null" >
+        #{shipname,jdbcType=VARCHAR},
+      </if>
+      <if test="shipcode != null" >
+        #{shipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closetime != null" >
+        #{closetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressid != null" >
+        #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="Order" >
+    update order
+    <set >
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="paytype != null" >
+        paytype = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shipname != null" >
+        shipname = #{shipname,jdbcType=VARCHAR},
+      </if>
+      <if test="shipcode != null" >
+        shipcode = #{shipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closetime != null" >
+        closetime = #{closetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressid != null" >
+        addressId = #{addressid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="Order" >
+    update order
+    set userid = #{userid,jdbcType=INTEGER},
+      total = #{total,jdbcType=DECIMAL},
+      paytype = #{paytype,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      shipname = #{shipname,jdbcType=VARCHAR},
+      shipcode = #{shipcode,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      closetime = #{closetime,jdbcType=TIMESTAMP},
+      addressId = #{addressid,jdbcType=INTEGER},
+      orderNo = #{orderno,jdbcType=VARCHAR}
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>
