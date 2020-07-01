@@ -25,4 +25,13 @@ public class GoodsPortalController {
         returnMap.put("list",goodsList);
         return returnMap;
     }
+    /**
+     * 根据ID查询商品信息
+     *
+     */
+    @RequestMapping(value="/getGoodsById",method =RequestMethod.GET)
+    public Goods getGoods(@RequestParam Integer id) {
+        return goodsService.selectByPrimaryKey(id);
+    }
+
 }
